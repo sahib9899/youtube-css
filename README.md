@@ -1,3 +1,6 @@
+# VIDYARD LINK "FIRST"
+https://share.vidyard.com/watch/d9QkteBsmCr9WNg6hHMtpJ?
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
