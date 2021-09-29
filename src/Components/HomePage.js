@@ -9,24 +9,25 @@ import image1 from "./Images/video1.jpg"
 import { connect } from "react-redux";
 import moment from "moment";
 import { ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const HomePage = (props) => {
-  const [Video, setVideo] = useState(null);
   const videoData = props.data;
 
   const showVideoList = () => {
     return videoData.map((video) => {
-      const uploadTime = moment(video.uploadtime).diff(moment().format("YYYY-MM-DD HH:mm"), 'minutes');
-      console.log('time',uploadTime)
-      {Video !== null ? <VideoPlayer props={video.id} /> : console.log(null) }
+      console.log(video.uploadTime)
+      //  const uploadTime = moment(video.uploadtime).diff(moment().format("YYYY-MM-DD HH:mm"), 'minutes');
+      // console.log('time',uploadTime)
 
       return (
+        <Link to={{pathname:'/videoPlayer', aboutProps:video }}  >
         <artical className="video-container">
           <a href="#">
             <img
               className="thumbnail-image"
               src={video.thumbnail}
-              onClick={() => setVideo(video.id)}
+             
             />
           </a>
           <div className="video-bottom-section">
@@ -42,12 +43,13 @@ const HomePage = (props) => {
               Sahib Tank
             </a>
             <div className="video-metadata">
-              <span>15K views</span>&nbsp; •&nbsp;
-              <span>{uploadTime} minutes ago</span>
+              <span>{video.views ? video.views : '108K'} views</span>&nbsp; •&nbsp;
+              <span>{video.uploadTime !== '' ? video.uploadTime : 'Few seconds ago'}</span>
             </div>
             </div>
           </div>
         </artical>
+        </Link>
       );
     });
   };
@@ -58,7 +60,7 @@ const HomePage = (props) => {
         style={{
           backgroundColor: "#f7f7f7",
           display: "grid",
-          gridTemplateColumns: "15% 85%",
+          gridTemplateColumns: "13% 87%",
         }}
       >
         <MenuSidebar />
@@ -66,38 +68,8 @@ const HomePage = (props) => {
           <Categories />
           <div className="videos">
             <section className="video-section">
-              <artical className="video-container">
-                <a href="#">
-                  <img
-                    className="thumbnail-image"
-                    src={image1}
-                    onClick={() => setVideo("nWJXdr0mQ0s")}
-                  />
-                </a>
-                <div className="video-bottom-section">
-                  <div>
-                  <a href="#">
-                    <img className="channel-icon" src={stlogo} />
-                  </a>
-                  </div>
-
-                <div className="video-details">
-                  <a href="#" className="video-title">
-                    Title 1
-                  </a>
-                  <a href="#" className="video-channel-name">
-                    Sahib Tank
-                  </a>
-                  <div className="video-metadata">
-                    <span>15K views</span>&nbsp; •&nbsp;
-                    <span>2 Days ago</span>
-                  </div>
-                </div>
-
-                </div>
-              </artical>
+           
               {showVideoList()}
-              {Video !== null ? <VideoPlayer props={Video} /> : ""}
             </section>
           </div>
         </div>

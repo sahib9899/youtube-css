@@ -1,3 +1,9 @@
+# VIDYARD LINK 'added new video-player page and CSS Game completed'
+https://share.vidyard.com/watch/wtkh3JnmwNzNJVgqf1a9ND?
+
+# VIDYARD LINK (29 Sep)
+https://share.vidyard.com/watch/GfjXyi4xEv7Fn4RLtX94o8?
+
 # VIDYARD LINK "FIRST"
 https://share.vidyard.com/watch/d9QkteBsmCr9WNg6hHMtpJ?
 

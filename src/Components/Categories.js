@@ -1,21 +1,21 @@
 import React from 'react'
 import "../Styles.css"
 
-function Categories() {
+function Categories({playerCategory}) {
     return (
-        <div className='categories'>
-            <section className="category-section">
-                <button className="category active">All</button>
-                <button className="category "> one </button>
-                <button className="category "> two </button>
-                <button className="category "> three </button>
-                <button className="category "> four </button>
-                <button className="category "> five </button>
-                <button className="category "> six </button>
-                <button className="category "> seven </button>
-                <button className="category "> eight  </button>
-                <button className="category "> nine </button>
-                <button className="category "> ten </button>
+        <div className={`categories ${playerCategory}`}>
+            <section className='category-section'>
+                <button className="category-active"> All </button>
+                <button className="category "> Music </button>
+                <button className="category "> Vlogs </button>
+                <button className="category "> Car reviews </button>
+                <button className="category "> Mixes </button>
+                <button className="category "> Movie musicals </button>
+                <button className="category "> Anime hits </button>
+                <button className="category "> Lectures </button>
+                <button className="category "> Peaky blinders  </button>
+                <button className="category "> Breaking bad </button>
+                <button className="category "> Naruto fights </button>
             </section>
             
         </div>

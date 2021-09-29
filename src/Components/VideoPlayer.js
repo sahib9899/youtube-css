@@ -1,27 +1,122 @@
-import React from 'react';
-import YouTube from 'react-youtube';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import YouTube from "react-youtube";
+import Categories from "./Categories";
+import MenuSidebar from "./MenuSidebar";
+import NavBar from "./NavBar";
 
 const VideoPlayer = (props) => {
-//
-    console.log('props', props.props);
-    const videoId = props.props;
+  console.log("videodata", props.data);
+  //
+  console.log("player", props.location.aboutProps);
+  const playVideoData = props.location.aboutProps;
 
-    const onReady = (e) => {
-      // access to player in all event handlers via event.target
-      //e.target.pauseVideo();
-    }
+  const videoData = props.data;
 
-    const opts = {
-      height: '390',
-      width: '640',
-      playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: 1,
-      }
-    }
+  const showVideoList = (player) => {
+    return videoData.map((video) => {
+      console.log(video.uploadTime);
+      //  const uploadTime = moment(video.uploadtime).diff(moment().format("YYYY-MM-DD HH:mm"), 'minutes');
+      // console.log('time',uploadTime)
 
-    return <YouTube videoId={videoId} opts={opts} onReady={()=>onReady()} />;
-  
-}
+      return (
+        <Link to={{ pathname: "/videoPlayer", aboutProps: video.id }}>
+          <div className={`${player}`}>
+            <div>
+              <a href="#">
+                <img className="thumbnail-image" src={video.thumbnail} />
+              </a>
+            </div>
+            <div className="video-bottom-section" style={{ marginLeft: "5px" }}>
+              <div className="video-details">
+                <a href="#" className="video-title">
+                  {video.title}
+                </a>
+                <a href="#" className="video-channel-name">
+                  Sahib Tank
+                </a>
+                <div className="video-metadata">
+                  <span>{video.views ? video.views : "108K"} views</span>&nbsp;
+                  •&nbsp;
+                  <span>
+                    {video.uploadTime !== ""
+                      ? video.uploadTime
+                      : "Few seconds ago"}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+      );
+    });
+  };
 
-export default VideoPlayer;
+  const onReady = (e) => {
+    // access to player in all event handlers via event.target
+    //e.target.pauseVideo();
+  };
+
+  const opts = {
+    height: "720",
+    width: "1280",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+
+  return (
+    <React.Fragment>
+      <div>
+        <NavBar />
+        <div
+          style={{
+            backgroundColor: "#f7f7f7",
+            display: "grid",
+            gridTemplateColumns: "73% 27%",
+          }}
+        >
+          <div
+            className="videos"
+            style={{ marginLeft: "7rem", marginTop: "1.8rem" }}
+          >
+            <YouTube
+              videoId={playVideoData.id}
+              opts={opts}
+              onReady={() => onReady()}
+            />
+            <div className="player-video-title">{playVideoData.title}</div>
+            <div className='player-video-details'>
+              <span>
+                {playVideoData.views ? playVideoData.views : "108K"} views
+              </span>
+              &nbsp;•&nbsp;
+              <span>
+                {playVideoData.uploadTime !== ""
+                  ? playVideoData.uploadTime
+                  : "Few seconds ago"}
+              </span>
+            </div>
+            <hr />
+          </div>
+          <div>
+            <div>
+              <Categories playerCategory="player-category" />
+            </div>
+            <div>{showVideoList("player-video-container")}</div>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    data: state.addVideoReducer,
+  };
+};
+
+export default connect(mapStateToProps, null)(VideoPlayer);
