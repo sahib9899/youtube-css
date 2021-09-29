@@ -7,11 +7,9 @@ import bell from "./Icons/bell.svg";
 import user from "./Icons/user.svg";
 import MenuLogo from "./Icons/MenuLogo.svg";
 import { addVideo } from "./Actions";
-import MenuSidebar from "./MenuSidebar";
 import {
   Button,
   Modal,
-  Form,
   FormControl,
   FormLabel,
   OverlayTrigger,
@@ -34,10 +32,7 @@ const NavBar = (props) => {
 
   const handleInput = () => {
     setshow(false);
-    setVideoData({
-      ...videoData,
-      uploadTime: moment().format("YYYY-MM-DD HH:mm"),
-    });
+    setVideoData({...videoData, uploadTime: moment().format("YYYY-MM-DD HH:mm")});
     props.addVideo(videoData);
   };
 

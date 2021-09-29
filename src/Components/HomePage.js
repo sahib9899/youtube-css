@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import MenuSidebar from "./MenuSidebar";
-import VideoPlayer from "./VideoPlayer";
 import NavBar from "./NavBar";
 import "../Styles.css";
 import Categories from "./Categories";
 import stlogo from "./Images/stLogo.jpg";
-import image1 from "./Images/video1.jpg"
 import { connect } from "react-redux";
 import moment from "moment";
-import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const HomePage = (props) => {
@@ -16,10 +13,6 @@ const HomePage = (props) => {
 
   const showVideoList = () => {
     return videoData.map((video) => {
-      console.log(video.uploadTime)
-      //  const uploadTime = moment(video.uploadtime).diff(moment().format("YYYY-MM-DD HH:mm"), 'minutes');
-      // console.log('time',uploadTime)
-
       return (
         <Link to={{pathname:'/videoPlayer', aboutProps:video }}  >
         <artical className="video-container">

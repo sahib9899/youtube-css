@@ -3,23 +3,15 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import YouTube from "react-youtube";
 import Categories from "./Categories";
-import MenuSidebar from "./MenuSidebar";
 import NavBar from "./NavBar";
 
 const VideoPlayer = (props) => {
-  console.log("videodata", props.data);
-  //
-  console.log("player", props.location.aboutProps);
-  const playVideoData = props.location.aboutProps;
 
+  const playVideoData = props.location.aboutProps;
   const videoData = props.data;
 
   const showVideoList = (player) => {
     return videoData.map((video) => {
-      console.log(video.uploadTime);
-      //  const uploadTime = moment(video.uploadtime).diff(moment().format("YYYY-MM-DD HH:mm"), 'minutes');
-      // console.log('time',uploadTime)
-
       return (
         <Link to={{ pathname: "/videoPlayer", aboutProps: video.id }}>
           <div className={`${player}`}>
@@ -53,11 +45,6 @@ const VideoPlayer = (props) => {
     });
   };
 
-  const onReady = (e) => {
-    // access to player in all event handlers via event.target
-    //e.target.pauseVideo();
-  };
-
   const opts = {
     height: "720",
     width: "1280",
@@ -85,7 +72,6 @@ const VideoPlayer = (props) => {
             <YouTube
               videoId={playVideoData.id}
               opts={opts}
-              onReady={() => onReady()}
             />
             <div className="player-video-title">{playVideoData.title}</div>
             <div className='player-video-details'>
