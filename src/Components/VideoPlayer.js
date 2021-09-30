@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import YouTube from "react-youtube";
 import Categories from "./Categories";
 import NavBar from "./NavBar";
+import VideoList from "./VideoList";
 
 const VideoPlayer = (props) => {
-
   const playVideoData = props.location.aboutProps;
   const videoData = props.data;
 
@@ -69,12 +69,9 @@ const VideoPlayer = (props) => {
             className="videos"
             style={{ marginLeft: "7rem", marginTop: "1.8rem" }}
           >
-            <YouTube
-              videoId={playVideoData.id}
-              opts={opts}
-            />
+            <YouTube videoId={playVideoData.id} opts={opts} />
             <div className="player-video-title">{playVideoData.title}</div>
-            <div className='player-video-details'>
+            <div className="player-video-details">
               <span>
                 {playVideoData.views ? playVideoData.views : "108K"} views
               </span>
@@ -91,7 +88,11 @@ const VideoPlayer = (props) => {
             <div>
               <Categories playerCategory="player-category" />
             </div>
-            <div>{showVideoList("player-video-container")}</div>
+              <div className="videos">
+                <section className="video-section">
+                  <VideoList />
+                </section>
+            </div>
           </div>
         </div>
       </div>

@@ -14,10 +14,12 @@ import {
   FormLabel,
   OverlayTrigger,
   Tooltip,
+  Dropdown,
 } from "react-bootstrap";
 import ImageUploading from "react-images-uploading";
 import { connect } from "react-redux";
 import moment from "moment";
+import HomePage from "./HomePage";
 
 const NavBar = (props) => {
   const [show, setshow] = useState(false);
@@ -28,21 +30,25 @@ const NavBar = (props) => {
     thumbnail: "",
   });
 
-  const onChange = (image) => setVideoData({ ...videoData, thumbnail: image[0].url });
+  const onChange = (image) =>
+    setVideoData({ ...videoData, thumbnail: image[0].url });
 
   const handleInput = () => {
     setshow(false);
-    setVideoData({...videoData, uploadTime: moment().format("YYYY-MM-DD HH:mm")});
+    setVideoData({
+      ...videoData,
+      uploadTime: moment().format("YYYY-MM-DD HH:mm"),
+    });
     props.addVideo(videoData);
   };
 
   return (
     <div className="header">
-      <img src={MenuLogo} />
+      <img style={{ cursor: "pointer" }} src={MenuLogo} />
       <a href="#">
         <img src={logo} alt="YouTube logo" className="youtube-logo" />
       </a>
-      <form className="search-bar">
+      <div className="search-bar">
         <input
           className="search-input"
           type="search"
@@ -52,11 +58,15 @@ const NavBar = (props) => {
         <button type="submit" className="search-btn">
           <img src={searchIcon} />
         </button>
-      </form>
+      </div>
       <div className="menu-icons">
         <OverlayTrigger
           placement="bottom"
-          overlay={<Tooltip id="button-tooltip-2" style={{color:"#e7e7e7"}}>Add new video</Tooltip> }
+          overlay={
+            <Tooltip id="button-tooltip-2" style={{ color: "#e7e7e7" }}>
+              Add new video
+            </Tooltip>
+          }
         >
           <img
             src={createVideo}
@@ -66,7 +76,19 @@ const NavBar = (props) => {
         </OverlayTrigger>
         <img src={apps} alt="apps" />
         <img src={bell} alt="Notifications" />
-        <img src={user} alt="login user" />
+
+        <Dropdown>
+          <Dropdown.Toggle variant="outline-danger" id="dropdown-basic">
+            <img src={user} alt="login user" />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="#" >Login user</Dropdown.Item>
+            <Dropdown.Item href="#">Another action</Dropdown.Item>
+            <Dropdown.Item href="#" >Theme  </Dropdown.Item>
+          
+       
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
 
       <div>
