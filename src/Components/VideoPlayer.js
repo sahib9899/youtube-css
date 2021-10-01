@@ -89,9 +89,9 @@ const VideoPlayer = (props) => {
               <Categories playerCategory="player-category" />
             </div>
               <div className="videos">
-                <section className="video-section">
+                {/* <section className="video-section"> */}
                   <VideoList />
-                </section>
+                {/* </section> */}
             </div>
           </div>
         </div>

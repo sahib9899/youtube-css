@@ -5,8 +5,11 @@ import createVideo from "./Icons/createVideo.svg";
 import apps from "./Icons/apps.svg";
 import bell from "./Icons/bell.svg";
 import user from "./Icons/user.svg";
+import gridLogo from "./Icons/gridLogo.svg"
+import listLogo from "./Icons/listLogo.svg"
 import MenuLogo from "./Icons/MenuLogo.svg";
-import { addVideo } from "./Actions";
+import { addVideo, themeChange, menuChange, viewChange } from "./Actions";
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import {
   Button,
   Modal,
@@ -22,7 +25,11 @@ import moment from "moment";
 import HomePage from "./HomePage";
 
 const NavBar = (props) => {
+  
   const [show, setshow] = useState(false);
+  const [checked, setChecked] = useState(true)
+  const [view, setView] = useState(true)
+  const [open, setOpen] = useState(true)
   const [videoData, setVideoData] = useState({
     id: "",
     title: "",
@@ -30,8 +37,19 @@ const NavBar = (props) => {
     thumbnail: "",
   });
 
-  const onChange = (image) =>
-    setVideoData({ ...videoData, thumbnail: image[0].url });
+  const onChange = image => setVideoData({ ...videoData, thumbnail: image[0].url });
+  const handleFeatures = (check) => {
+    if(check == 'theme'){
+      setChecked(!checked)
+      props.themeChange(checked)
+    }else if(check == 'view'){
+      setView(!view)
+      props.viewChange(view)
+    }else{
+      setOpen(!open)
+      props.menuChange(open)
+    }
+  }
 
   const handleInput = () => {
     setshow(false);
@@ -44,7 +62,7 @@ const NavBar = (props) => {
 
   return (
     <div className="header">
-      <img style={{ cursor: "pointer" }} src={MenuLogo} />
+      <img style={{ cursor: "pointer"}} src={MenuLogo} onClick={()=>handleFeatures('menu')}/>
       <a href="#">
         <img src={logo} alt="YouTube logo" className="youtube-logo" />
       </a>
@@ -74,6 +92,7 @@ const NavBar = (props) => {
             onClick={() => setshow(true)}
           />
         </OverlayTrigger>
+  
         <img src={apps} alt="apps" />
         <img src={bell} alt="Notifications" />
 
@@ -84,9 +103,12 @@ const NavBar = (props) => {
           <Dropdown.Menu>
             <Dropdown.Item href="#" >Login user</Dropdown.Item>
             <Dropdown.Item href="#">Another action</Dropdown.Item>
-            <Dropdown.Item href="#" >Theme  </Dropdown.Item>
-          
-       
+            <Dropdown.Item href="#" >Dark Theme  
+            <BootstrapSwitchButton size="xs"  checked={false} onChange={()=>handleFeatures('theme')} /> 
+            </Dropdown.Item>
+            <Dropdown.Item href="#" >Layout view  
+            <BootstrapSwitchButton size="xs"  checked={false} onChange={()=>handleFeatures('view')} /> 
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -141,6 +163,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { addVideo };
+const mapDispatchToProps = { addVideo, themeChange, menuChange, viewChange };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

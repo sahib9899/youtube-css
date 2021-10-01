@@ -13,34 +13,34 @@ const MenuBar = () => {
       <section className="menubar-section-2">
         <br />
         <div className="menu-name-2 active">
-          <img className="menu-icon" src={HomeLogo} />
+          <img className="menu-icon-2" src={HomeLogo} />
           &nbsp;Home
         </div>
 
         <div className="menu-name-2">
-          <img className="menu-icon" src={ExploreLogo} />
+          <img className="menu-icon-2" src={ExploreLogo} />
            &nbsp;Explore
         </div>
 
         <div className="menu-name-2">
-          <img className="menu-icon" src={SubscriptionsLogo} />
+          <img className="menu-icon-2" src={SubscriptionsLogo} />
           Subscription
         </div>
 
         <hr />
 
         <div className="menu-name-2">
-          <img className="menu-icon" src={LibraryLogo} />
+          <img className="menu-icon-2" src={LibraryLogo} />
           &nbsp;Library
         </div>
 
         <div className="menu-name-2">
-          <img className="menu-icon" src={HistoryLogo} />
+          <img className="menu-icon-2" src={HistoryLogo} />
           History
         </div>
 
         <div className="menu-name-2">
-          <img className="menu-icon" src={WatchLater} />
+          <img className="menu-icon-2" src={WatchLater} />
           &nbsp;WatchLater
         </div>
       </section>

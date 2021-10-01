@@ -1,3 +1,6 @@
+# vidyard link 1-10-21
+https://share.vidyard.com/watch/hjovb9P56ekA7xNv5a9co9?
+
 # Vidyard link 30-09-21
 https://share.vidyard.com/watch/6ysJtxrQsGETc4ByAtka77?
 
